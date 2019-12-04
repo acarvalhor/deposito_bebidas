@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "Bebidas")
+//@Entity
+//@Table(name = "Bebidas")
 @Data
 @Builder
 @AllArgsConstructor

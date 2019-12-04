@@ -9,9 +9,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
-
-@Entity
-@Table(name = "Registro")
+//
+//@Entity
+//@Table(name = "Registro")
 @Data
 @Builder
 @NoArgsConstructor
@@ -24,13 +24,16 @@ public class Registro implements Serializable {
 
     private Time horarioEntradaSaida;
 
+    @ManyToOne
     private TipoRegistro tipoRegistro;
 
     private Double volume;
 
+    @ManyToMany
     private Secao secao;
 
     private String responsavelEntrada;
 
+    @ManyToOne
     private Bebida bebida;
 }
