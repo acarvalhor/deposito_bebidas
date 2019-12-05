@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Bebidas")
@@ -25,4 +26,8 @@ public class Bebida implements Serializable {
     private Double volumeTotal;
 
     private TipoBebida tipoBebida;
+
+    @ManyToMany
+    private List<Secao> secoes;
+
 }

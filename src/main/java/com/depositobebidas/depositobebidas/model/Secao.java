@@ -7,11 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
-//@Entity
+@Entity
 @Data
 @Builder
-//@Table(name = "Secao")
+@Table(name = "Secao")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Secao implements Serializable {
@@ -22,6 +23,7 @@ public class Secao implements Serializable {
 
     private Double capacidadeArmazenamento;
 
-    @ManyToOne
-    private TipoBebida tipoBebida;
+    @ManyToMany
+    private List<Bebida> bebidas;
+
 }
