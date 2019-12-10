@@ -3,7 +3,6 @@ package com.depositobebidas.depositobebidas.repository;
 import com.depositobebidas.depositobebidas.model.Bebida;
 import com.depositobebidas.depositobebidas.model.Secao;
 import com.depositobebidas.depositobebidas.model.TipoBebida;
-import com.depositobebidas.depositobebidas.repository.BebidaRepository;
 import com.depositobebidas.depositobebidas.utils.Utils;
 import org.junit.Rule;
 import org.junit.Test;
@@ -51,5 +50,18 @@ public class BebidaRepositoryTest {
         this.bebidaRepository.delete(bebida);
         Optional<Bebida> bebidaFind = this.bebidaRepository.findById(bebida.getId());
         assertThat(bebidaFind).isEmpty();
+    }
+
+    @Test
+    public void updateBebidaChangeAndPersistData(){
+        Bebida bebida = Bebida.builder().nome("Guarana").tipoBebida(TipoBebida.NAO_ALCOOLICAS).volumeTotal(123.3).build();
+        Arrays.asList(Secao.builder().capacidadeArmazenamento(400.00).bebidas(Arrays.asList(bebida)).build());
+        this.bebidaRepository.save(bebida);
+        bebida.setNome("Vodka");
+        bebida.setVolumeTotal(555.5);
+        bebida = this.bebidaRepository.save(bebida);
+        assertThat(bebida.getNome().equals("Vodka"));
+        assertThat(bebida.getVolumeTotal().equals(555.5));
+
     }
 }
