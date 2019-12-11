@@ -59,9 +59,12 @@ public class BebidaRepositoryTest {
         this.bebidaRepository.save(bebida);
         bebida.setNome("Vodka");
         bebida.setVolumeTotal(555.5);
-        bebida = this.bebidaRepository.save(bebida);
-        assertThat(bebida.getNome().equals("Vodka"));
-        assertThat(bebida.getVolumeTotal().equals(555.5));
+        this.bebidaRepository.save(bebida);
+        Optional<Bebida> optionalBebida = this.bebidaRepository.findById(bebida.getId());
+        assertThat(optionalBebida).isNotEmpty();
+        assertThat(optionalBebida.get().getId()).isNotNull();
+        assertThat(optionalBebida.get().getNome().equals("Vodka"));
+        assertThat(optionalBebida.get().getVolumeTotal().equals(555.5));
 
     }
 }
