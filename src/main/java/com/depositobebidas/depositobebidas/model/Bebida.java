@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -21,8 +22,10 @@ public class Bebida implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotEmpty(message = "Nome é um campo Obrigatório")
     private String nome;
 
+    @NotEmpty(message = "Volume total é um campo Obrigatório")
     private Double volumeTotal;
 
     private TipoBebida tipoBebida;

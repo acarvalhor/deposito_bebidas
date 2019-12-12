@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,5 +68,26 @@ public class BebidaRepositoryTest {
         assertThat(optionalBebida.get().getNome().equals("Vodka"));
         assertThat(optionalBebida.get().getVolumeTotal().equals(555.5));
 
+    }
+
+    @Test
+    public void findBebidaByNomeShouldFindByName(){
+        Bebida bebida1 = Bebida.builder().nome("Skol").tipoBebida(TipoBebida.ALCOOLICAS).volumeTotal(200.0).build();
+        Arrays.asList(Secao.builder().capacidadeArmazenamento(400.00).bebidas(Arrays.asList(bebida1)).build());
+        Bebida bebida2 = Bebida.builder().nome("Skol").tipoBebida(TipoBebida.ALCOOLICAS).volumeTotal(250.0).build();
+        Arrays.asList(Secao.builder().capacidadeArmazenamento(500.00).bebidas(Arrays.asList(bebida2)).build());
+        this.bebidaRepository.save(bebida1);
+        this.bebidaRepository.save(bebida2);
+
+        List<Bebida> bebidas = this.bebidaRepository.findBebidaByNome("Skol");
+        assertThat(bebidas.size()).isEqualTo(2);
+
+    }
+
+    @Test
+    public void createWheNameIsNull(){
+       thrown.expect(ConstraintViolationException.class);
+        Bebida bebida = new Bebida().builder().volumeTotal(123.123).build();
+       this.bebidaRepository.save(bebida);
     }
 }
