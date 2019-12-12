@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Bebida implements Serializable {
     @NotEmpty(message = "Nome é um campo Obrigatório")
     private String nome;
 
-    @NotEmpty(message = "Volume total é um campo Obrigatório")
+    @NotNull(message = "Volume é um campo Obrigatório")
     private Double volumeTotal;
 
     private TipoBebida tipoBebida;

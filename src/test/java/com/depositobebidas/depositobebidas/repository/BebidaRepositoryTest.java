@@ -3,6 +3,7 @@ package com.depositobebidas.depositobebidas.repository;
 import com.depositobebidas.depositobebidas.model.Bebida;
 import com.depositobebidas.depositobebidas.model.Secao;
 import com.depositobebidas.depositobebidas.model.TipoBebida;
+import com.depositobebidas.depositobebidas.repository.BebidaRepository;
 import com.depositobebidas.depositobebidas.utils.Utils;
 import org.junit.Rule;
 import org.junit.Test;
@@ -85,9 +86,8 @@ public class BebidaRepositoryTest {
     }
 
     @Test
-    public void createWheNameIsNull(){
-       thrown.expect(ConstraintViolationException.class);
-        Bebida bebida = new Bebida().builder().volumeTotal(123.123).build();
-       this.bebidaRepository.save(bebida);
+    public void shouldValidateNameAndVolumeIsNotNull(){
+       thrown.expect(NullPointerException.class);
+       this.bebidaRepository.save(new Bebida());
     }
 }
