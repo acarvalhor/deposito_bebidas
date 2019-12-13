@@ -87,7 +87,7 @@ public class BebidaRepositoryTest {
 
     @Test
     public void shouldValidateNameAndVolumeIsNotNull(){
-       thrown.expect(NullPointerException.class);
+       thrown.expect(ConstraintViolationException.class);
        this.bebidaRepository.save(new Bebida());
     }
 }
