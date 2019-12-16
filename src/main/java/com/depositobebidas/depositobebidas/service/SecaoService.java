@@ -13,8 +13,12 @@ import java.util.stream.Stream;
 @Service
 public class SecaoService {
 
+    private SecaoRepository  secaoRepository;
+
     @Autowired
-    SecaoRepository  secaoRepository;
+    public SecaoService(SecaoRepository secaoRepository) {
+        this.secaoRepository = secaoRepository;
+    }
 
     public List<Secao> consultaSecoesDisponiveisDeArmazenamento(Bebida bebida){
         List<Secao> secoesDisponiveisByBebida = retornaSecoesDisponiveisByBebida(bebida);

@@ -1,10 +1,29 @@
 package com.depositobebidas.depositobebidas.utils;
 
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.depositobebidas.depositobebidas.repository.SecaoRepository;
+import com.depositobebidas.depositobebidas.service.SecaoService;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class SecaoServiceTest {
+
+    @InjectMocks
+    SecaoService secaoService;
+
+    @Mock
+    SecaoRepository secaoRepository;
+
+    @Before
+    public void init(){
+        //MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void calculaVolumeSecao(){
+
+    }
+
 }
